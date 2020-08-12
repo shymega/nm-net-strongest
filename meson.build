@@ -11,7 +11,6 @@ project_source_files = [
 project_dependencies = [
   dependency('glib-2.0'),
   dependency('libnm'),
-  dependency('gio-2.0'),
 ]
 
 include_dirs = [
@@ -23,9 +22,9 @@ build_args = [
   '-DPROJECT_VERSION=' + meson.project_version(),
   '-Wall',
   '-Wextra',
-  '-Werror',
-  '-Wpedantic',
+#  '-Werror',
   '-Wunused',
+  '-Wconversion',
 ]
 
 project_target = executable(
