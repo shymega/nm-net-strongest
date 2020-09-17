@@ -43,8 +43,6 @@ main (void) {
     const GPtrArray *devices;
     guint i;
 
-    g_log_set_default_handler(g_log_writer_default(G_LOG_LEVEL_INFO, NULL, NULL, NULL));
-
     client = create_nm_client ();
     check_nm_client (client);
 
