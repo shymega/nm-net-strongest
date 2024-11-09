@@ -22,7 +22,6 @@ build_args = [
   '-DPROJECT_VERSION=' + meson.project_version(),
   '-Wall',
   '-Wextra',
-#  '-Werror',
   '-Wunused',
   '-Wconversion',
 ]
