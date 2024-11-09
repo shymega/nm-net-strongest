@@ -1,27 +1,39 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+    paths:
+      - src/*
+      - include/*
+      - meson.build
+  pull_request:
+    paths:
+      - src/*
+      - include/*
+      - meson.build
 
 jobs:
-  build:
-
-    runs-on: ubuntu-18.04
-
+  build-and-test:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Update Aptitude.
-        run: sudo apt-get update
-      - name: Install Meson.
-        run: sudo apt-get install -y meson
-      - name: Install Ninja.
-        run: sudo apt-get install -y ninja-build
-      - name: Install libraries.
-        run: sudo apt-get install -y libnm-dev libglib2.0-dev network-manager-dev
-      - name: Install clang.
-        run: sudo apt-get install -y clang-tools
-      - name: Initialise Meson.
-        run: meson build
-      - name: Run Ninja.
+      - uses: actions/checkout@v4
+      - name: Update package lists and environment
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get dist-upgrade -y
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y meson ninja-build \
+            libnm-dev libglib2.0-dev network-manager-dev \
+            clang-tools build-essential
+      - name: Setup Meson build environment
+        run: meson setup build
+      - name: Compile project
         run: ninja -C build
-      - name: Perform static analysis.
+      - name: Run tests
+        run: ninja -C build test
+      - name: Run static analysis
         run: ninja -C build scan-build
