@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "weekly"
       timezone: "Europe/London"
-      time: 08:00
+      time: "08:00"
     commit-message:
       prefix: "chore(ci-deps)"
     reviewers:
