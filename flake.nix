@@ -56,6 +56,10 @@
               networkmanager.dev
               glib
             ];
+            meta = with lib; rec {
+              maintainers = [ shymega ];
+              mainProgram = "nm-net-strongest";
+            };
           };
           default = nm-net-strongest;
         };
