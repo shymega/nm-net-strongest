@@ -21,14 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update package lists and environment
-        run: |
-          sudo apt-get update
-          sudo apt-get upgrade -y
-          sudo apt-get dist-upgrade -y
+      - name: Update package lists
+        run: sudo apt-get update
       - name: Install dependencies
         run: |
-          sudo apt-get update
           sudo apt-get install -y meson ninja-build \
             libnm-dev libglib2.0-dev network-manager-dev \
             clang-tools build-essential
