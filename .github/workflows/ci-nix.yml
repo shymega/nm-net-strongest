@@ -1,0 +1,37 @@
+---
+name: CI tests (Nix)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - src/*
+      - include/*
+      - meson.build
+      - flake.nix
+      - flake.lock
+      - .github/workflows/ci-nix.yml
+
+  pull_request:
+    paths:
+      - src/*
+      - include/*
+      - meson.build
+      - flake.nix
+      - flake.lock
+      - .github/workflows/ci-nix.yml
+
+jobs:
+  run-tests:
+    name: Nix CI tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+      - name: Build Nix package
+        run: nix build
+      - name: Check Flake with Nix
+        run: nix flake check
+      - name: Check Flake with Statix
+        run: nix run nixpkgs#statix -- check ./
