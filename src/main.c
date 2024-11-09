@@ -49,7 +49,7 @@ main (void) {
     devices = nm_client_get_all_devices (client);
 
     if (devices == NULL || devices->len <= 0) {
-        // Exit silently, since there are no devices.
+        /* Exit silently, since there are no devices. */
         return EXIT_SUCCESS;
     }
 
