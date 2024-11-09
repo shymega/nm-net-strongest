@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-project('nm-conn-strongest',
+project('nm-net-strongest',
         'c',
         version: '0.1.0',
         default_options: [
