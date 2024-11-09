@@ -1,5 +1,5 @@
-#ifndef UTILS_H_
-#define UTILS_H_
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <glib-2.0/glib.h>
 #include <glib-2.0/gio/gio.h>
