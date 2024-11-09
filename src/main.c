@@ -49,8 +49,8 @@ main (void) {
     devices = nm_client_get_all_devices (client);
 
     if (devices == NULL || devices->len <= 0) {
-        g_critical ("No network devices detected.");
-        return EXIT_FAILURE;
+        // Exit silently, since there are no devices.
+        return EXIT_SUCCESS;
     }
 
     for (i = 0; i < devices->len; i++) {
